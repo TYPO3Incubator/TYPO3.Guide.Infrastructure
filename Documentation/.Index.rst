@@ -1,0 +1,37 @@
+
+.. include:: Includes.txt
+
+.. _TYPO3.Guide.Infrastructure.Index:
+
+==========================
+TYPO3 Infrastructure Guide
+==========================
+
+
+
+Linux, Mac
+==========
+
+If you follow the instruction at
+http://mbless.de/blog/2015/01/26/sphinx-doc-installation-steps.html
+you can render the documentation in TYPO3-style yourself. To do so
+go to the *\_make*-folder on the commandline and find out what's possible::
+
+   make
+
+Build html::
+
+   make html
+
+Browse the documentation::
+
+   firefox build/html/Index.html &
+
+
+
+Windows
+=======
+
+Works in principle in the same way.
+
+Enjoy!
