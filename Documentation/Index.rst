@@ -6,8 +6,8 @@
 TYPO3 Infrastructure Guide
 ==========================
 
-This guide provider insight into the public TYPO3 infrastructure and the
-used packaging and release processes.
+This guide provides insight into the public TYPO3 infrastructure, the packaging used
+and release process.
 
 .. toctree::
    :maxdepth: 2

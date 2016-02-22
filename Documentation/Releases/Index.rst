@@ -6,9 +6,9 @@
 TYPO3 Releases
 ==============
 
-TYPO3 Release Packages (the downloadable tarballs and zip files) as well as the
+TYPO3 Release Packages (the downloadable tarballs and zip files) as well as
 Git tags are signed using PGP signatures during the automated release process.
-Besides that, MD5 and SHA2-256 are being generated for these files.
+Besides that, MD5 and SHA2-256 hashes are being generated for these files.
 
 Checking file hashes
 --------------------
@@ -22,7 +22,7 @@ The ``RELEASE`` file contains these hash sums that have been created during the
 release process.
 
 .. code-block:: text
-   :caption: `TYPO3 7.6.3 RELEASE file`_ as example
+   :caption: `TYPO3 7.6.3 RELEASE file` as an example
    :name: release-file
 
    -----BEGIN PGP SIGNED MESSAGE-----
@@ -41,7 +41,7 @@ release process.
    25a0e6041bd8ff2174f5cd2293e4b18b74bfd3b28c3bc25510deb235d58e2814  typo3_src-7.6.3.zip
 
    Verifying signatures via command line, see:
-   https://docs.typo3.org/typo3cms/drafts/github/TYPO3Incubator/InfrastructureGuide/Releases/
+   https://docs.typo3.org/typo3cms/InfrastructureGuide/
    ================================================================================================
 
    -----BEGIN PGP SIGNATURE-----
@@ -50,7 +50,8 @@ release process.
 
 
 To check values, either one of the the names tools, ``md5sum`` or ``shasum`` has
-to be used to locally create these hash values.
+to be used to locally create these hash values which you then use to compare them to
+the values published with the release.
 
 .. code-block:: bash
 
@@ -76,11 +77,11 @@ TYPO3 uses `Pretty Good Privacy`_ to sign release packages and Git release tags.
 To validate these signatures we suggest to use `The GNU Privacy Guard`_, however
 any `OpenPGP`_-compliant tool should be working as well.
 
-The release packages are using a detacted binary signature. For instance this
-means that the file ``typo3_src-7.6.3.tar.gz`` has an additional signature file
-``typo3_src-7.6.3.tar.gz.sig`` which is the detached signature. The ``RELEASE``
-file that has been mentioned in the previous section is signed as well - however
-contains the signature inline in the same file.
+The release packages are using a detached binary signature. This means that the
+file ``typo3_src-7.6.3.tar.gz`` has an additional signature file ``typo3_src-7.6.3
+.tar.gz.sig`` which is the detached signature. The ``RELEASE`` file that has been
+mentioned in the previous section is signed as well - however it contains the
+signature inline in the same file.
 
 .. code-block:: bash
 
@@ -88,7 +89,7 @@ contains the signature inline in the same file.
    gpg: Signature made Tue 16 Feb 2016 12:24:13 PM CET using RSA key ID 59BC94C4
    gpg: Can't check signature: public key not found
 
-The warning means, that the public key ``59BC94C4`` is not yet available on the
+The warning means that the public key ``59BC94C4`` is not yet available on the
 local system and cannot be used to validate the signature. The public key can be
 obtained by any key server - a popular one is `pgpkeys.mit.edu`_.
 
@@ -113,7 +114,7 @@ signature of the ``RELEASE`` file can be repeated.
    gpg:          There is no indication that the signature belongs to the owner.
    Primary key fingerprint: 7AF5 1AAA DED9 D002 4F89  B06B 9B9C B92E 59BC 94C4
 
-The new warning is expected, since everybody could have created the public key
+The new warning is expected since everybody could have created the public key
 and uploaded it to the key server. The vital aspect here is to validate the key
 fingerprint ``7AF5 1AAA DED9 D002 4F89  B06B 9B9C B92E 59BC 94C4`` which is in
 this case the correct one for TYPO3 CMS release packages.
@@ -126,7 +127,7 @@ this case the correct one for TYPO3 CMS release packages.
    uid                  TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>
    sub   4096R/0752FD79 2016-02-21
 
-Verifying the release packages work almost similar with a detacted signature
+Verifying the release packages works almost similar with a detacted signature
 which has to be downloaded as well.
 
 .. code-block:: bash
@@ -143,7 +144,7 @@ which has to be downloaded as well.
 Checking tag signature
 ----------------------
 
-Checking signature on Git tags works similar to verifying the results using the
+Checking signatures on Git tags works similar to verifying the results using the
 ``gpg`` tool, but with using the ``git tag --verify`` command directly.
 
 .. code-block:: bash
