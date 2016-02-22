@@ -6,3 +6,186 @@
 TYPO3 Releases
 ==============
 
+TYPO3 Release Packages (the downloadable tarballs and zip files) as well as the
+Git tags are signed using PGP signatures during the automated release process.
+Besides that, MD5 and SHA2-256 are being generated for these files.
+
+Checking file hashes
+--------------------
+
+File hashes are used to check that a downloaded file was transferred and stored
+correctly on the local system. TYPO3 uses the cryptographic hash methods `MD5`_
+and `SHA2-256`_ which are created by accordant tools like ``md5sum`` or
+``shasum``.
+
+The ``RELEASE`` file contains these hash sums that have been created during the
+release process.
+
+.. code-block:: text
+   :caption: `TYPO3 7.6.3 RELEASE file`_ as example
+   :name: release-file
+
+   -----BEGIN PGP SIGNED MESSAGE-----
+   Hash: SHA256
+
+   ================================================================================================
+   Release of TYPO3 CMS 7.6.3
+   ================================================================================================
+
+   MD5 checksums:
+   bc0c39ebcecd497490d7825c20971f81  typo3_src-7.6.3.tar.gz
+   af674b4b912dd36c350e5a905e8e4e46  typo3_src-7.6.3.zip
+
+   SHA256 checksums:
+   d49e53b55792d2cf8a7012c6acbfed10478fd9d5d924a03c747a4dedf4049cf7  typo3_src-7.6.3.tar.gz
+   25a0e6041bd8ff2174f5cd2293e4b18b74bfd3b28c3bc25510deb235d58e2814  typo3_src-7.6.3.zip
+
+   Verifying signatures via command line, see:
+   https://docs.typo3.org/typo3cms/drafts/github/TYPO3Incubator/InfrastructureGuide/Releases/
+   ================================================================================================
+
+   -----BEGIN PGP SIGNATURE-----
+   ...
+   -----END PGP SIGNATURE-----
+
+
+To check values, either one of the the names tools, ``md5sum`` or ``shasum`` has
+to be used to locally create these hash values.
+
+.. code-block:: bash
+
+   ~$ md5sum typo3_src-*.tar.gz typo3_src-*.zip
+   bc0c39ebcecd497490d7825c20971f81  typo3_src-7.6.3.tar.gz
+   af674b4b912dd36c350e5a905e8e4e46  typo3_src-7.6.3.zip
+
+.. code-block:: bash
+
+   ~$ shasum -a 256 typo3_src-*.tar.gz typo3_src-*.zip
+   d49e53b55792d2cf8a7012c6acbfed10478fd9d5d924a03c747a4dedf4049cf7  typo3_src-7.6.3.tar.gz
+   25a0e6041bd8ff2174f5cd2293e4b18b74bfd3b28c3bc25510deb235d58e2814  typo3_src-7.6.3.zip
+
+.. _MD5: https://en.wikipedia.org/wiki/MD5
+.. _SHA2-256: https://en.wikipedia.org/wiki/SHA-2
+.. _TYPO3 7.6.3 RELEASE file: https://typo3.org
+
+
+Checking file signatures
+------------------------
+
+TYPO3 uses `Pretty Good Privacy`_ to sign release packages and Git release tags.
+To validate these signatures we suggest to use `The GNU Privacy Guard`_, however
+any `OpenPGP`_-compliant tool should be working as well.
+
+The release packages are using a detacted binary signature. For instance this
+means that the file ``typo3_src-7.6.3.tar.gz`` has an additional signature file
+``typo3_src-7.6.3.tar.gz.sig`` which is the detached signature. The ``RELEASE``
+file that has been mentioned in the previous section is signed as well - however
+contains the signature inline in the same file.
+
+.. code-block:: bash
+
+   ~$ gpg --verify RELEASE
+   gpg: Signature made Tue 16 Feb 2016 12:24:13 PM CET using RSA key ID 59BC94C4
+   gpg: Can't check signature: public key not found
+
+The warning means, that the public key ``59BC94C4`` is not yet available on the
+local system and cannot be used to validate the signature. The public key can be
+obtained by any key server - a popular one is `pgpkeys.mit.edu`_.
+
+.. code-block:: bash
+
+   ~$ gpg --keyserver pgpkeys.mit.edu --recv-key 59BC94C4
+   gpg: requesting key 59BC94C4 from hkp server pgpkeys.mit.edu
+   gpg: key 59BC94C4: public key "TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>" imported
+   gpg: no ultimately trusted keys found
+   gpg: Total number processed: 1
+   gpg:               imported: 1  (RSA: 1)
+
+Once the public key has been imported, the previous command on verifying the
+signature of the ``RELEASE`` file can be repeated.
+
+.. code-block:: bash
+
+   ~$ gpg --verify RELEASE
+   gpg: Signature made Tue 16 Feb 2016 12:24:13 PM CET using RSA key ID 59BC94C4
+   gpg: Good signature from "TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>"
+   gpg: WARNING: This key is not certified with a trusted signature!
+   gpg:          There is no indication that the signature belongs to the owner.
+   Primary key fingerprint: 7AF5 1AAA DED9 D002 4F89  B06B 9B9C B92E 59BC 94C4
+
+The new warning is expected, since everybody could have created the public key
+and uploaded it to the key server. The vital aspect here is to validate the key
+fingerprint ``7AF5 1AAA DED9 D002 4F89  B06B 9B9C B92E 59BC 94C4`` which is in
+this case the correct one for TYPO3 CMS release packages.
+
+.. code-block:: bash
+
+   ~$ gpg --fingerprint 59BC94C4
+   pub   4096R/59BC94C4 2016-02-21 [expires: 2021-02-22]
+         Key fingerprint = 7AF5 1AAA DED9 D002 4F89  B06B 9B9C B92E 59BC 94C4
+   uid                  TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>
+   sub   4096R/0752FD79 2016-02-21
+
+Verifying the release packages work almost similar with a detacted signature
+which has to be downloaded as well.
+
+.. code-block:: bash
+
+   ~$ gpg --verify typo3_src-7.6.3.tar.gz.sig typo3_src-7.6.3.tar.gz
+   gpg: Signature made Tue 16 Feb 2016 12:24:13 PM CET using RSA key ID 59BC94C4
+   gpg: Good signature from "TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>"
+
+.. _Pretty Good Privacy: https://en.wikipedia.org/wiki/Pretty_Good_Privacy
+.. _The GNU Privacy Guard: http://www.gnupg.org/
+.. _OpenPGP: http://www.openpgp.org/
+.. _pgpkeys.mit.edu: https://pgpkeys.mit.edu/
+
+Checking tag signature
+----------------------
+
+Checking signature on Git tags works similar to verifying the results using the
+``gpg`` tool, but with using the ``git tag --verify`` command directly.
+
+.. code-block:: bash
+
+   ~$ git tag --verify 7.6.3
+   object 654c6751a04ef60c5a3f7a95ac0b11cd8e06a742
+   type commit
+   tag 7.6.3
+   tagger TYPO3 Release Teamtypo3cms@typo3.org <typo3cms@typo3.org> 1456152946 +0100
+
+   Tagged version 7.6.3
+   gpg: Signature made Tue 16 Feb 2016 12:24:13 PM CET using RSA key ID 59BC94C4
+   gpg: Good signature from "TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>"
+
+The ``git show`` command on the name of the tag reveals more details.
+
+.. code-block:: bash
+
+   ~$ git show 7.6.3
+   tag 7.6.3
+   Tagger: TYPO3 Release Teamtypo3cms@typo3.org <typo3cms@typo3.org>
+   Date:   Tue Feb 16 12:24:13 2016 +0100
+
+   Tagged version 7.6.3
+   -----BEGIN PGP SIGNATURE-----
+   ...
+   -----END PGP SIGNATURE-----
+
+   commit 654c6751a04ef60c5a3f7a95ac0b11cd8e06a742
+   Author: TYPO3 Release Team <typo3cms@typo3.org>
+   Date:   Tue Feb 16 12:24:13 2016 +0100
+
+Resources
+---------
+
+Public Key
+~~~~~~~~~~
+
+* 4096 bit RSA key
+* Key ID `0x9B9CB92E59BC94C4`_
+* Download Public Keys from `typo3.org`_
+* Fingerprint ``7AF5 1AAA DED9 D002 4F89  B06B 9B9C B92E 59BC 94C4``
+
+.. _0x9B9CB92E59BC94C4: https://pgpkeys.mit.edu/pks/lookup?search=0x9B9CB92E59BC94C4
+.. _typo3.org: https://typo3.org/fileadmin/releases/KEYS
