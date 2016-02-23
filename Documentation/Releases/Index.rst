@@ -22,7 +22,7 @@ The ``RELEASE.txt`` file contains these hash sums that have been created during 
 release process.
 
 .. code-block:: text
-   :caption: ``TYPO3 7.6.4 RELEASE.txt file``_ as an example
+   :caption: `TYPO3 7.6.4 RELEASE.txt file`_ as an example
    :name: release-file
 
    -----BEGIN PGP SIGNED MESSAGE-----
@@ -144,7 +144,45 @@ which has to be downloaded as well.
 Checking tag signature
 ----------------------
 
-**Signed tags are temporarily not supported**
+Checking signatures on Git tags works similar to verifying the results using the
+``gpg`` tool, but with using the ``git tag --verify`` command directly.
+
+.. code-block:: bash
+
+   ~$ git tag --verify 7.6.4
+   object bd0c7f6ca9cb3093bd647e85035e9f36bf1e9e86
+   type commit
+   tag 7.6.4
+   tagger TYPO3 Release Team <typo3cms@typo3.org> 1456226245 +0100
+
+   Tagged version 7.6.4
+   gpg: Signature made Tue 23 Feb 2016 12:17:25 PM CET using RSA key ID 59BC94C4
+   gpg: Good signature from "TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>"
+
+The ``git show`` command on the name of the tag reveals more details.
+
+.. code-block:: bash
+
+   ~$ git show 7.6.4
+   tag 7.6.4
+   Tagger: TYPO3 Release Team <typo3cms@typo3.org>
+   Date:   Tue Feb 23 12:17:25 2016 +0100
+
+   Tagged version 7.6.4
+   -----BEGIN PGP SIGNATURE-----
+   ...
+   -----END PGP SIGNATURE-----
+
+   commit bd0c7f6ca9cb3093bd647e85035e9f36bf1e9e86
+   Author: TYPO3 Release Team <typo3cms@typo3.org>
+   Date:   Tue Feb 23 12:16:38 2016 +0100
+
+       [RELEASE] Release of TYPO3 7.6.4
+
+       Change-Id: Ibc16ad8989398404e277236bed6ae5a0f7f6a29f
+       Reviewed-on: https://review.typo3.org/46839
+       Reviewed-by: TYPO3 Release Team <typo3cms@typo3.org>
+       Tested-by: TYPO3 Release Team <typo3cms@typo3.org>
 
 Resources
 ---------
