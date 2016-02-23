@@ -10,6 +10,29 @@ TYPO3 Release Packages (the downloadable tarballs and zip files) as well as
 Git tags are signed using PGP signatures during the automated release process.
 Besides that, MD5 and SHA2-256 hashes are being generated for these files.
 
+Release package contents
+------------------------
+
+TYPO3 Release packages contain the following files:
+
+.. code-block:: bash
+   :caption: `TYPO3 CMS 7.6.4 contents`_ as an example
+   :name: release-package-contents
+
+   typo3_src-7.6.4.tar.gz
+   typo3_src-7.6.4.tar.gz.sig
+   typo3_src-7.6.4.zip
+   typo3_src-7.6.4.zip.sig
+   RELEASE-7.6.4.txt
+
+* ``*.tar.gz`` and ``*.zip`` files are the actual release packages, containing
+  the source code of the TYPO3 CMS Core
+* ``*.sig`` files contain accordant signatures for each release package file
+* ``RELEASE.txt`` is the signed "delivery note" of the whole release
+
+.. _TYPO3 CMS 7.6.4 contents: https://sourceforge.net/projects/typo3/files/TYPO3%20Source%20and%20Dummy/TYPO3%207.6.4/
+
+
 Checking file hashes
 --------------------
 
@@ -22,7 +45,7 @@ The ``RELEASE.txt`` file contains these hash sums that have been created during 
 release process.
 
 .. code-block:: text
-   :caption: `TYPO3 7.6.4 RELEASE.txt file`_ as an example
+   :caption: `TYPO3 CMS 7.6.4 RELEASE.txt file`_ as an example
    :name: release-file
 
    -----BEGIN PGP SIGNED MESSAGE-----
@@ -67,7 +90,7 @@ the values published with the release.
 
 .. _MD5: https://en.wikipedia.org/wiki/MD5
 .. _SHA2-256: https://en.wikipedia.org/wiki/SHA-2
-.. _TYPO3 7.6.4 RELEASE.txt file: http://prdownloads.sourceforge.net/typo3/RELEASE-7.6.4.txt?download
+.. _TYPO3 CMS 7.6.4 RELEASE.txt file: http://prdownloads.sourceforge.net/typo3/RELEASE-7.6.4.txt?download
 
 
 Checking file signatures
@@ -141,6 +164,7 @@ which has to be downloaded as well.
 .. _OpenPGP: http://www.openpgp.org/
 .. _pgpkeys.mit.edu: https://pgpkeys.mit.edu/
 
+
 Checking tag signature
 ----------------------
 
@@ -183,6 +207,7 @@ The ``git show`` command on the name of the tag reveals more details.
        Reviewed-on: https://review.typo3.org/46839
        Reviewed-by: TYPO3 Release Team <typo3cms@typo3.org>
        Tested-by: TYPO3 Release Team <typo3cms@typo3.org>
+
 
 Resources
 ---------
