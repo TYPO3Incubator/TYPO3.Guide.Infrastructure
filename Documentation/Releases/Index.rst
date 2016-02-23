@@ -41,8 +41,8 @@ correctly on the local system. TYPO3 uses the cryptographic hash methods `MD5`_
 and `SHA2-256`_ which are created by accordant tools like ``md5sum`` or
 ``shasum``.
 
-The ``RELEASE.txt`` file contains these hash sums that have been created during the
-release process.
+The ``RELEASE.txt`` file contains these hash sums that have been created during
+the release process.
 
 .. code-block:: text
    :caption: `TYPO3 CMS 7.6.4 RELEASE.txt file`_ as an example
@@ -73,8 +73,8 @@ release process.
 
 
 To check values, either one of the the names tools, ``md5sum`` or ``shasum`` has
-to be used to locally create these hash values which you then use to compare them to
-the values published with the release.
+to be used to locally create these hash values which you then use to compare
+them to the values published with the release.
 
 .. code-block:: bash
 
@@ -100,11 +100,11 @@ TYPO3 uses `Pretty Good Privacy`_ to sign release packages and Git release tags.
 To validate these signatures we suggest to use `The GNU Privacy Guard`_, however
 any `OpenPGP`_-compliant tool should be working as well.
 
-The release packages are using a detached binary signature. This means that the
-file ``typo3_src-7.6.4.tar.gz`` has an additional signature file ``typo3_src-7.6.4
-.tar.gz.sig`` which is the detached signature. The ``RELEASE.txt`` file that has been
-mentioned in the previous section is signed as well - however it contains the
-signature inline in the same file.
+The release packages are using a detached binary signature. This means that
+the file ``typo3_src-7.6.4.tar.gz`` has an additional signature file
+``typo3_src-7.6.4.tar.gz.sig`` which is the detached signature. The
+``RELEASE.txt`` file that has been mentioned in the previous section
+is signed as well - however it contains the signature inline in the same file.
 
 .. code-block:: bash
 
