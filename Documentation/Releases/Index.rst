@@ -144,38 +144,7 @@ which has to be downloaded as well.
 Checking tag signature
 ----------------------
 
-Checking signatures on Git tags works similar to verifying the results using the
-``gpg`` tool, but with using the ``git tag --verify`` command directly.
-
-.. code-block:: bash
-
-   ~$ git tag --verify 7.6.3
-   object 654c6751a04ef60c5a3f7a95ac0b11cd8e06a742
-   type commit
-   tag 7.6.3
-   tagger TYPO3 Release Teamtypo3cms@typo3.org <typo3cms@typo3.org> 1456152946 +0100
-
-   Tagged version 7.6.3
-   gpg: Signature made Tue 16 Feb 2016 12:24:13 PM CET using RSA key ID 59BC94C4
-   gpg: Good signature from "TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>"
-
-The ``git show`` command on the name of the tag reveals more details.
-
-.. code-block:: bash
-
-   ~$ git show 7.6.3
-   tag 7.6.3
-   Tagger: TYPO3 Release Teamtypo3cms@typo3.org <typo3cms@typo3.org>
-   Date:   Tue Feb 16 12:24:13 2016 +0100
-
-   Tagged version 7.6.3
-   -----BEGIN PGP SIGNATURE-----
-   ...
-   -----END PGP SIGNATURE-----
-
-   commit 654c6751a04ef60c5a3f7a95ac0b11cd8e06a742
-   Author: TYPO3 Release Team <typo3cms@typo3.org>
-   Date:   Tue Feb 16 12:24:13 2016 +0100
+**Signed tags are temporarily not supported**
 
 Resources
 ---------
