@@ -18,30 +18,30 @@ correctly on the local system. TYPO3 uses the cryptographic hash methods `MD5`_
 and `SHA2-256`_ which are created by accordant tools like ``md5sum`` or
 ``shasum``.
 
-The ``RELEASE`` file contains these hash sums that have been created during the
+The ``RELEASE.txt`` file contains these hash sums that have been created during the
 release process.
 
 .. code-block:: text
-   :caption: `TYPO3 7.6.3 RELEASE file` as an example
+   :caption: ``TYPO3 7.6.4 RELEASE.txt file``_ as an example
    :name: release-file
 
    -----BEGIN PGP SIGNED MESSAGE-----
    Hash: SHA256
 
    ================================================================================================
-   Release of TYPO3 CMS 7.6.3
+   Release of TYPO3 CMS 7.6.4
    ================================================================================================
 
    MD5 checksums:
-   bc0c39ebcecd497490d7825c20971f81  typo3_src-7.6.3.tar.gz
-   af674b4b912dd36c350e5a905e8e4e46  typo3_src-7.6.3.zip
+   400d5f8808c1377034ddc35165ccbb18  typo3_src-7.6.4.tar.gz
+   d9b4ec13fdc935445f6e85c3e3c7fdc8  typo3_src-7.6.4.zip
 
    SHA256 checksums:
-   d49e53b55792d2cf8a7012c6acbfed10478fd9d5d924a03c747a4dedf4049cf7  typo3_src-7.6.3.tar.gz
-   25a0e6041bd8ff2174f5cd2293e4b18b74bfd3b28c3bc25510deb235d58e2814  typo3_src-7.6.3.zip
+   6d65008f4a71036cc6c90648f3c4019422904ff7c7d3c0f84a1695d64b8f615b  typo3_src-7.6.4.tar.gz
+   04fe21245a0881ed3be1219092cc86bcba1d2fb28554e33d425814bfa5bc347e  typo3_src-7.6.4.zip
 
-   Verifying signatures via command line, see:
-   https://docs.typo3.org/typo3cms/InfrastructureGuide/
+   Further details on the signing and hashing process of TYPO3 releases:
+   https://docs.typo3.org/typo3cms/drafts/github/TYPO3Incubator/InfrastructureGuide/Releases/
    ================================================================================================
 
    -----BEGIN PGP SIGNATURE-----
@@ -56,18 +56,18 @@ the values published with the release.
 .. code-block:: bash
 
    ~$ md5sum typo3_src-*.tar.gz typo3_src-*.zip
-   bc0c39ebcecd497490d7825c20971f81  typo3_src-7.6.3.tar.gz
-   af674b4b912dd36c350e5a905e8e4e46  typo3_src-7.6.3.zip
+   400d5f8808c1377034ddc35165ccbb18  typo3_src-7.6.4.tar.gz
+   d9b4ec13fdc935445f6e85c3e3c7fdc8  typo3_src-7.6.4.zip
 
 .. code-block:: bash
 
    ~$ shasum -a 256 typo3_src-*.tar.gz typo3_src-*.zip
-   d49e53b55792d2cf8a7012c6acbfed10478fd9d5d924a03c747a4dedf4049cf7  typo3_src-7.6.3.tar.gz
-   25a0e6041bd8ff2174f5cd2293e4b18b74bfd3b28c3bc25510deb235d58e2814  typo3_src-7.6.3.zip
+   6d65008f4a71036cc6c90648f3c4019422904ff7c7d3c0f84a1695d64b8f615b  typo3_src-7.6.4.tar.gz
+   04fe21245a0881ed3be1219092cc86bcba1d2fb28554e33d425814bfa5bc347e  typo3_src-7.6.4.zip
 
 .. _MD5: https://en.wikipedia.org/wiki/MD5
 .. _SHA2-256: https://en.wikipedia.org/wiki/SHA-2
-.. _TYPO3 7.6.3 RELEASE file: https://typo3.org
+.. _TYPO3 7.6.4 RELEASE.txt file: http://prdownloads.sourceforge.net/typo3/RELEASE-7.6.4.txt?download
 
 
 Checking file signatures
@@ -78,15 +78,15 @@ To validate these signatures we suggest to use `The GNU Privacy Guard`_, however
 any `OpenPGP`_-compliant tool should be working as well.
 
 The release packages are using a detached binary signature. This means that the
-file ``typo3_src-7.6.3.tar.gz`` has an additional signature file ``typo3_src-7.6.3
-.tar.gz.sig`` which is the detached signature. The ``RELEASE`` file that has been
+file ``typo3_src-7.6.4.tar.gz`` has an additional signature file ``typo3_src-7.6.4
+.tar.gz.sig`` which is the detached signature. The ``RELEASE.txt`` file that has been
 mentioned in the previous section is signed as well - however it contains the
 signature inline in the same file.
 
 .. code-block:: bash
 
-   ~$ gpg --verify RELEASE
-   gpg: Signature made Tue 16 Feb 2016 12:24:13 PM CET using RSA key ID 59BC94C4
+   ~$ gpg --verify RELEASE-7.6.4.txt
+   gpg: Signature made Tue 23 Feb 2016 12:18:26 PM CET using RSA key ID 59BC94C4
    gpg: Can't check signature: public key not found
 
 The warning means that the public key ``59BC94C4`` is not yet available on the
@@ -103,12 +103,12 @@ obtained by any key server - a popular one is `pgpkeys.mit.edu`_.
    gpg:               imported: 1  (RSA: 1)
 
 Once the public key has been imported, the previous command on verifying the
-signature of the ``RELEASE`` file can be repeated.
+signature of the ``RELEASE.txt`` file can be repeated.
 
 .. code-block:: bash
 
-   ~$ gpg --verify RELEASE
-   gpg: Signature made Tue 16 Feb 2016 12:24:13 PM CET using RSA key ID 59BC94C4
+   ~$ gpg --verify RELEASE-7.6.4.txt
+   gpg:  Signature made Tue 23 Feb 2016 12:18:26 PM CET using RSA key ID 59BC94C4
    gpg: Good signature from "TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>"
    gpg: WARNING: This key is not certified with a trusted signature!
    gpg:          There is no indication that the signature belongs to the owner.
@@ -132,8 +132,8 @@ which has to be downloaded as well.
 
 .. code-block:: bash
 
-   ~$ gpg --verify typo3_src-7.6.3.tar.gz.sig typo3_src-7.6.3.tar.gz
-   gpg: Signature made Tue 16 Feb 2016 12:24:13 PM CET using RSA key ID 59BC94C4
+   ~$ gpg --verify typo3_src-7.6.4.tar.gz.sig typo3_src-7.6.4.tar.gz
+   gpg: Signature made Tue 23 Feb 2016 12:18:24 PM CET using RSA key ID 59BC94C4
    gpg: Good signature from "TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>"
 
 .. _Pretty Good Privacy: https://en.wikipedia.org/wiki/Pretty_Good_Privacy
