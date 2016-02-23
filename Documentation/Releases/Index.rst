@@ -209,11 +209,8 @@ The ``git show`` command on the name of the tag reveals more details.
        Tested-by: TYPO3 Release Team <typo3cms@typo3.org>
 
 
-Resources
----------
-
 Public Key
-~~~~~~~~~~
+----------
 
 * 4096 bit RSA key
 * Key ID `0x9B9CB92E59BC94C4`_
