@@ -118,12 +118,15 @@ obtained by any key server - a popular one is `pgpkeys.mit.edu`_.
 
 .. code-block:: bash
 
-   ~$ gpg --keyserver pgpkeys.mit.edu --recv-key 59BC94C4
+   ~$ wget -qO- https://typo3.org/fileadmin/releases/KEYS | gpg --import
+   ~$ gpg --import KEYS
    gpg: requesting key 59BC94C4 from hkp server pgpkeys.mit.edu
    gpg: key 59BC94C4: public key "TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>" imported
+   gpg: key FA9613D1: public key "Benjamin Mack <benni@typo3.org>" imported
+   gpg: key 16490937: public key "Oliver Hader <oliver@typo3.org>" imported
    gpg: no ultimately trusted keys found
-   gpg: Total number processed: 1
-   gpg:               imported: 1  (RSA: 1)
+   gpg: Total number processed: 3
+   gpg:               imported: 3  (RSA: 3)
 
 Once the public key has been imported, the previous command on verifying the
 signature of the ``RELEASE.txt`` file can be repeated.
@@ -209,13 +212,36 @@ The ``git show`` command on the name of the tag reveals more details.
        Tested-by: TYPO3 Release Team <typo3cms@typo3.org>
 
 
-Public Key
-----------
+Public Keys
+-----------
 
-* 4096 bit RSA key
-* Key ID `0x9B9CB92E59BC94C4`_
-* Download Public Keys from `typo3.org`_
-* Fingerprint ``7AF5 1AAA DED9 D002 4F89  B06B 9B9C B92E 59BC 94C4``
+.. note::
+
+   Through June 2017 TYPO3 releases have been cryptographically signed by
+   ``TYPO3 Release Team <typo3cms@typo3.org>`` with a dedicated public key.
+   Since July 2017 releases are signed by individual members of the TYPO3
+   Release Team directly, namely ``Benni Mack <benni@typo3.org>`` and
+   ``Oliver Hader <oliver@typo3.org>``.
+
+You can download the used public keys from `typo3.org`_
+
+* TYPO3 Release Team <typo3cms@typo3.org>
+   + 4096 bit RSA key
+   + Key ID `0x9B9CB92E59BC94C4`_
+   + Fingerprint ``7AF5 1AAA DED9 D002 4F89  B06B 9B9C B92E 59BC 94C4``
+* Benni Mack <benni@typo3.org>
+   + 4096 bit RSA key
+   + Key ID `0x3304BBDBFA9613D1`_
+   + Fingerprint ``E7ED 29A7 0309 A0D1 AE34  DA73 3304 BBDB FA96 13D1``
+* Oliver Hader <oliver@typo3.org>
+   + 4096 bit RSA key
+   + Key ID `0xC19FAFD699012A5A`_, subkey of `0xA36E4D1F16490937`_
+   + Fingerprint ``0C4E 4936 2CFA CA0B BFCE  5D16 A36E 4D1F 1649 0937``
+
+...............................
 
 .. _0x9B9CB92E59BC94C4: https://pgpkeys.mit.edu/pks/lookup?search=0x9B9CB92E59BC94C4
+.. _0x3304BBDBFA9613D1: https://pgpkeys.mit.edu/pks/lookup?search=0x3304BBDBFA9613D1
+.. _0xC19FAFD699012A5A: https://pgpkeys.mit.edu/pks/lookup?search=0xC19FAFD699012A5A
+.. _0xA36E4D1F16490937: https://pgpkeys.mit.edu/pks/lookup?search=0xA36E4D1F16490937
 .. _typo3.org: https://typo3.org/fileadmin/releases/KEYS
