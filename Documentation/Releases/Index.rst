@@ -119,7 +119,6 @@ obtained by any key server - a popular one is `pgpkeys.mit.edu`_.
 .. code-block:: bash
 
    ~$ wget -qO- https://get.typo3.org/KEYS | gpg --import
-   ~$ gpg --import KEYS
    gpg: requesting key 59BC94C4 from hkp server pgpkeys.mit.edu
    gpg: key 59BC94C4: public key "TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>" imported
    gpg: key FA9613D1: public key "Benjamin Mack <benni@typo3.org>" imported
