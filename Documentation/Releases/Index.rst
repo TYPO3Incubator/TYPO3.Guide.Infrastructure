@@ -118,7 +118,7 @@ obtained by any key server - a popular one is `pgpkeys.mit.edu`_.
 
 .. code-block:: bash
 
-   ~$ wget -qO- https://typo3.org/fileadmin/releases/KEYS | gpg --import
+   ~$ wget -qO- https://get.typo3.org/KEYS | gpg --import
    ~$ gpg --import KEYS
    gpg: requesting key 59BC94C4 from hkp server pgpkeys.mit.edu
    gpg: key 59BC94C4: public key "TYPO3 Release Team (RELEASE) <typo3cms@typo3.org>" imported
@@ -223,7 +223,7 @@ Public Keys
    Release Team directly, namely ``Benni Mack <benni@typo3.org>`` and
    ``Oliver Hader <oliver@typo3.org>``.
 
-You can download the used public keys from `typo3.org`_
+You can download the used public keys from `get.typo3.org.keys`_
 
 * TYPO3 Release Team <typo3cms@typo3.org>
    + 4096 bit RSA key
@@ -244,4 +244,4 @@ You can download the used public keys from `typo3.org`_
 .. _0x3304BBDBFA9613D1: https://pgpkeys.mit.edu/pks/lookup?search=0x3304BBDBFA9613D1
 .. _0xC19FAFD699012A5A: https://pgpkeys.mit.edu/pks/lookup?search=0xC19FAFD699012A5A
 .. _0xA36E4D1F16490937: https://pgpkeys.mit.edu/pks/lookup?search=0xA36E4D1F16490937
-.. _typo3.org: https://typo3.org/fileadmin/releases/KEYS
+.. _get.typo3.org.keys: https://get.typo3.org/KEYS
