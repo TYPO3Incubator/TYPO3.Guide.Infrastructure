@@ -1,5 +1,7 @@
 ⚠️ **Moved to https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Installation/pull/82**
 
+----
+
 ==========================
 TYPO3.Guide.Infrastructure
 ==========================
